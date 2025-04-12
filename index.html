@@ -85,26 +85,18 @@
     <script>
         function calculateScore() {
             let score = 0;
-            let allAnswered = true; // flag to check if all questions are answered
 
-            // Check all questions
+            // بررسی همه سوالات
             for (let i = 1; i <= 4; i++) {
                 const q = document.querySelector(`input[name="q${i}"]:checked`);
                 if (q) {
-                    score += Number(q.value);
+                    score += parseInt(q.value); // تغییر نوع به عدد صحیح
                 } else {
-                    score += 0; // Assign 0 if no answer is selected
-                    allAnswered = false; // if any question is not answered
+                    score += 0; // اگر پاسخ نداده شده، نمره 0 می‌گیریم
                 }
             }
 
-            // If not all questions are answered, show alert
-            if (!allAnswered) {
-                alert("لطفاً به تمام سوالات پاسخ دهید.");
-                return;
-            }
-
-            // Hide the form and show the result
+            // مخفی کردن فرم و نمایش نتیجه
             document.getElementById("quizForm").style.display = "none";
             const resultBox = document.getElementById("resultBox");
             resultBox.style.display = "block";

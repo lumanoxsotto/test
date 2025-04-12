@@ -38,6 +38,11 @@
         #restartButton {
             display: none;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -49,7 +54,9 @@
             <label><input type="radio" name="q1" value="yes"> بله</label><br>
             <label><input type="radio" name="q1" value="no"> نه</label><br>
             <label><input type="radio" name="q1" value="irrelevant"> به شما مربوط نیست!</label><br>
-            <button type="button" onclick="handleQ1()">بعدی</button>
+            <div class="button-container">
+                <button type="button" onclick="handleQ1()">بعدی</button>
+            </div>
         </div>
 
         <!-- سوال ۲ -->
@@ -59,7 +66,10 @@
             <label><input type="radio" name="q2" value="0"> فرار می‌کنم با جیغ!</label><br>
             <label><input type="radio" name="q2" value="0"> خودم رو به مردن می‌زنم!</label><br>
             <label><input type="radio" name="q2" value="-5"> به تو ربط نداره!</label><br>
-            <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
+            <div class="button-container">
+                <button type="button" onclick="previousQuestion('q2', 'q1')">قبلی</button>
+                <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
+            </div>
         </div>
 
         <!-- سوال ۳ -->
@@ -69,7 +79,10 @@
             <label><input type="radio" name="q3" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
             <label><input type="radio" name="q3" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
             <label><input type="radio" name="q3" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
-            <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
+            <div class="button-container">
+                <button type="button" onclick="previousQuestion('q3', 'q2')">قبلی</button>
+                <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
+            </div>
         </div>
 
         <!-- سوال ۴ -->
@@ -78,7 +91,10 @@
             <label><input type="radio" name="q4" value="5"> با لبخند جواب می‌دم 😌</label><br>
             <label><input type="radio" name="q4" value="0"> شاید بعداً بخونم.</label><br>
             <label><input type="radio" name="q4" value="-5"> بلاک می‌کنم! 😡</label><br>
-            <button type="button" onclick="calculateScore()">پایان</button>
+            <div class="button-container">
+                <button type="button" onclick="previousQuestion('q4', 'q3')">قبلی</button>
+                <button type="button" onclick="calculateScore()">پایان</button>
+            </div>
         </div>
     </form>
 
@@ -109,6 +125,11 @@
         function nextQuestion(currentId, nextId) {
             document.getElementById(currentId).classList.remove("active");
             document.getElementById(nextId).classList.add("active");
+        }
+
+        function previousQuestion(currentId, prevId) {
+            document.getElementById(currentId).classList.remove("active");
+            document.getElementById(prevId).classList.add("active");
         }
 
         function calculateScore() {

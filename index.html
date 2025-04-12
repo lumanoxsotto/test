@@ -1,143 +1,145 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, proxy-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>آزمون نهایی</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 30px;
-      background: #fdf6f6;
-      direction: rtl;
-      text-align: right;
-    }
-    .question {
-      display: none;
-    }
-    .question.active {
-      display: block;
-    }
-    .result {
-      display: none;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-    button {
-      margin-top: 15px;
-    }
-    #restartButton {
-      display: none;
-    }
-    .message {
-      font-size: 18px;
-      color: #ff0000;
-      margin-top: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آزمون نهایی</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            padding: 30px;
+            background: #fdf6f6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .question {
+            display: none;
+        }
+
+            .question.active {
+                display: block;
+            }
+
+        .result {
+            display: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #restartButton {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <h2>آزمون پایان ترم 😎</h2>  
-  <form id="quizForm">
-    <!-- سوال ۱ -->
-    <div class="question active" id="q1">
-      <p>۱.  شما شوکا می‌باشید؟</p>
-      <label><input type="radio" name="q1" value="5"> بله، من شوکا هستم!</label><br>
-      <label><input type="radio" name="q1" value="0"> نه، من شوکا نیستم.</label><br>
-      <label><input type="radio" name="q1" value="-5"> به تو ربط داره؟!</label><br>
-      <button type="button" onclick="handleQ1()">بعدی</button>
-      <div class="message" id="q1Message"></div>
-    </div>
+    <h2>آزمون نهایی 📝</h2>
+    <form id="quizForm">
+        <!-- سوال ۱ -->
+        <div class="question active" id="q1">
+            <p>۱. آیا شما شوکا می‌باشید؟</p>
+            <label><input type="radio" name="q1" value="yes"> بله</label><br>
+            <label><input type="radio" name="q1" value="no"> نه</label><br>
+            <label><input type="radio" name="q1" value="irrelevant"> به شما مربوط نیست!</label><br>
+            <button type="button" onclick="handleQ1()">بعدی</button>
+        </div>
 
-    <!-- سوال ۲ -->
-    <div class="question" id="q2">
-      <p>۲. اگر در جنگل با یک خرس روبرو شوید، چه می‌کنید؟</p>
-      <label><input type="radio" name="q2" value="5"> باهاش دوست می‌شم ب‌بینم همونیه که تو شورش‌های منطقی بود؟!</label><br>
-      <label><input type="radio" name="q2" value="0"> فرار می‌کنم.</label><br>
-      <label><input type="radio" name="q2" value="0"> خودم را به مردن می‌زنم!</label><br>
-      <label><input type="radio" name="q2" value="-5"> به تو چه؟ چقدر سوال می‌پرسی!</label><br>
-      <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
-      <div class="message" id="q2Message"></div>
-    </div>
+        <!-- سوال ۲ -->
+        <div class="question" id="q2">
+            <p>۲. اگر در جنگل با خرسی مواجه شوید، چه می‌کنید؟</p>
+            <label><input type="radio" name="q2" value="5"> دوست می‌شم ببینم همون خرسه که در شورش‌های منطقی بوده؟</label><br>
+            <label><input type="radio" name="q2" value="0"> فرار می‌کنم با جیغ!</label><br>
+            <label><input type="radio" name="q2" value="0"> خودم رو به مردن می‌زنم!</label><br>
+            <label><input type="radio" name="q2" value="-5"> به تو ربط نداره!</label><br>
+            <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
+        </div>
 
-    <!-- سوال ۳ -->
-    <div class="question" id="q3">
-      <p>۳. اگر کسی از شما در مورد سینمای کوتاه بپرسد، پاسخ شما چیست؟</p>
-      <label><input type="radio" name="q3" value="5"> سینمای کوتاه یعنی دستاوردی خلاقانه در زمان محدود.</label><br>
-      <label><input type="radio" name="q3" value="0"> یه چیزی مثل فیلم‌های بلند ولی کوتاه‌تر.</label><br>
-      <label><input type="radio" name="q3" value="0"> اصلاً نمی‌دونم، ولی جذاب به نظر میاد!</label><br>
-      <label><input type="radio" name="q3" value="-5"> دیگه این روزها کی فیلم کوتاه می‌سازه؟</label><br>
-      <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
-      <div class="message" id="q3Message"></div>
-    </div>
+        <!-- سوال ۳ -->
+        <div class="question" id="q3">
+            <p>۳. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
+            <label><input type="radio" name="q3" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
+            <label><input type="radio" name="q3" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
+            <label><input type="radio" name="q3" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
+            <label><input type="radio" name="q3" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
+            <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
+        </div>
 
-    <!-- سوال ۴ -->
-    <div class="question" id="q4">
-      <p>۴. وقتی از شما درخواست می‌شود که چنین فرمی را پر کنید، چه می‌کنید؟</p>
-      <label><input type="radio" name="q4" value="5"> با لبخند و خوشحالی جواب می‌دهم! 😁</label><br>
-      <label><input type="radio" name="q4" value="0"> شاید بعداً به آن فکر کنم.</label><br>
-      <label><input type="radio" name="q4" value="-5"> چرا کسی باید چنین چیزی از من بخواهد؟</label><br>
-      <button type="button" onclick="calculateScore()">پایان</button>
-      <div class="message" id="q4Message"></div>
-    </div>
-  </form>
+        <!-- سوال ۴ -->
+        <div class="question" id="q4">
+            <p>۴. اگه یه نفر یه فرم شوخ‌طبع برات بفرسته، چی کار می‌کنی؟</p>
+            <label><input type="radio" name="q4" value="5"> با لبخند جواب می‌دم 😌</label><br>
+            <label><input type="radio" name="q4" value="0"> شاید بعداً بخونم.</label><br>
+            <label><input type="radio" name="q4" value="-5"> بلاک می‌کنم! 😡</label><br>
+            <button type="button" onclick="calculateScore()">پایان</button>
+        </div>
+    </form>
 
-  <div class="result" id="resultBox"></div>
-  <button id="restartButton" onclick="restartQuiz()">شروع دوباره</button>
+    <div class="result" id="resultBox"></div>
+    <button id="restartButton" onclick="restartQuiz()">شروع دوباره</button>
 
-  <script>
-    function handleQ1() {
-      const q1 = document.querySelector('input[name="q1"]:checked');
-      if (!q1) {
-        document.getElementById('q1Message').innerText = "لطفاً یک گزینه را انتخاب کنید!";
-        return;
-      }
+    <script>
+        function handleQ1() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            if (!q1) return alert("لطفاً یک گزینه را انتخاب کنید!");
 
-      const val = q1.value;
-      if (val === "5") {
-        document.getElementById('q1Message').innerText = "شما شوکا هستید! به سوال بعدی می‌رویم...";
-        nextQuestion("q1", "q2");
-      } else if (val === "0") {
-        document.getElementById('q1Message').innerText = "خوب، شاید شوکا نیستید! به سوال بعدی می‌رویم.";
-        nextQuestion("q1", "q2");
-      } else if (val === "-5") {
-        document.getElementById('q1Message').innerText = "اینکه خیلی عجیب بود!";
-        nextQuestion("q1", "q2");
-      }
-    }
+            const val = q1.value;
+            if (val === "yes") {
+                alert("هااان! 😏");
+                nextQuestion("q1", "q2");
+            } else if (val === "no") {
+                alert("🥲 خب... خوش گذشت، خدافظ.");
+                document.getElementById("quizForm").style.display = "none";
+                document.getElementById("resultBox").style.display = "block";
+                document.getElementById("resultBox").innerText = "شما در آزمون رد شدید!";
+                document.getElementById("restartButton").style.display = "block";
+            } else if (val === "irrelevant") {
+                alert("حالا به هر حال ادامه می‌دیم...");
+                nextQuestion("q1", "q2");
+            }
+        }
 
-    function nextQuestion(currentId, nextId) {
-      document.getElementById(currentId).classList.remove("active");
-      document.getElementById(nextId).classList.add("active");
-    }
+        function nextQuestion(currentId, nextId) {
+            document.getElementById(currentId).classList.remove("active");
+            document.getElementById(nextId).classList.add("active");
+        }
 
-    function calculateScore() {
-      let score = 0;
-      for (let i = 2; i <= 4; i++) {
-        const q = document.querySelector(`input[name="q${i}"]:checked`);
-        if (q) score += parseInt(q.value);
-      }
+        function calculateScore() {
+            let score = 0;
+            for (let i = 1; i <= 4; i++) {
+                const q = document.querySelector(`input[name="q${i}"]:checked`);
+                if (q) score += parseInt(q.value);
+            }
 
-      document.getElementById("quizForm").style.display = "none";
-      const resultBox = document.getElementById("resultBox");
-      resultBox.style.display = "block";
-      resultBox.innerText = `نمره نهایی شما: ${score} از ۲۰ 🌟`;
-      document.getElementById("restartButton").style.display = "block"; 
-    }
+            document.getElementById("quizForm").style.display = "none";
+            const resultBox = document.getElementById("resultBox");
+            resultBox.style.display = "block";
+            if (score === 20) {
+                resultBox.innerText = "آفرین دختر زرنگ و باهوش! نمره شما: " + score + " از ۲۰ 🌟";
+            } else {
+                resultBox.innerText = `نمره نهایی شما: ${score} از ۲۰ 🌟`;
+            }
+            document.getElementById("restartButton").style.display = "block";
+        }
 
-    function restartQuiz() {
-      document.getElementById("quizForm").reset();
-      document.getElementById("quizForm").style.display = "block";
-      document.getElementById("resultBox").style.display = "none";
-      document.getElementById("restartButton").style.display = "none";
+        function restartQuiz() {
+            document.getElementById("quizForm").reset();
+            document.getElementById("quizForm").style.display = "block";
+            document.getElementById("resultBox").style.display = "none";
+            document.getElementById("restartButton").style.display = "none";
 
-      for (let i = 1; i <= 4; i++) {
-        document.getElementById(`q${i}`).classList.remove("active");
-      }
-      document.getElementById("q1").classList.add("active");
-    }
-  </script>
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`q${i}`).classList.remove("active");
+            }
+            document.getElementById("q1").classList.add("active");
+        }
+    </script>
 </body>
 </html>

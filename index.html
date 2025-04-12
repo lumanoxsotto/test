@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>تست شوکایی</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      background: #fdf6f6;
+      direction: rtl;
+      text-align: right;
+    }
+    .question {
+      display: none;
+    }
+    .question.active {
+      display: block;
+    }
+    .result {
+      display: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h2>تست شوکایی 😄</h2>
+  <form id="quizForm">
+    <!-- سوال ۱ -->
+    <div class="question active" id="q1">
+      <p>۱. آیا شما شوکا می‌باشید؟</p>
+      <label><input type="radio" name="q1" value="yes"> بله</label><br>
+      <label><input type="radio" name="q1" value="no"> نه</label><br>
+      <label><input type="radio" name="q1" value="irrelevant"> به شما مربوط نیست!</label><br>
+      <button type="button" onclick="handleQ1()">بعدی</button>
+    </div>
+
+    <!-- سوال ۲ -->
+    <div class="question" id="q2">
+      <p>۲. اگر در جنگل با خرسی به نام پویا روبرو شوید، چه می‌کنید؟</p>
+      <label><input type="radio" name="q2" value="5"> دوست می‌شم ببینم همون خرسه است که تو شورش‌های منطقی بود؟</label><br>
+      <label><input type="radio" name="q2" value="0"> فرار می‌کنم با جیغ!</label><br>
+      <label><input type="radio" name="q2" value="-5"> زنگ می‌زنم محیط‌زیست!</label><br>
+      <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
+    </div>
+
+    <!-- سوال ۳ -->
+    <div class="question" id="q3">
+      <p>۳. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
+      <label><input type="radio" name="q3" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
+      <label><input type="radio" name="q3" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
+      <label><input type="radio" name="q3" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
+      <label><input type="radio" name="q3" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
+      <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
+    </div>
+
+    <!-- سوال ۴ -->
+    <div class="question" id="q4">
+      <p>۴. اگه یه نفر یه فرم شوخ‌طبع برات بفرسته، چی کار می‌کنی؟</p>
+      <label><input type="radio" name="q4" value="5"> با لبخند جواب می‌دم 😌</label><br>
+      <label><input type="radio" name="q4" value="0"> شاید بعداً بخونم.</label><br>
+      <label><input type="radio" name="q4" value="-5"> بلاک می‌کنم! 😡</label><br>
+      <button type="button" onclick="calculateScore()">پایان</button>
+    </div>
+  </form>
+
+  <div class="result" id="resultBox"></div>
+
+  <script>
+    function handleQ1() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      if (!q1) return alert("لطفاً یک گزینه را انتخاب کنید!");
+
+      const val = q1.value;
+      if (val === "yes") {
+        alert("هااان! 😏");
+        nextQuestion("q1", "q2");
+      } else if (val === "no") {
+        alert("🥲 خب... خوش گذشت، خدافظ.");
+        document.getElementById("quizForm").style.display = "none";
+        document.getElementById("resultBox").style.display = "block";
+        document.getElementById("resultBox").innerText = "شما در آزمون رد شدید!";
+      } else {
+        alert("😕 واقعا؟ این چه جوابی بود آخه!");
+        document.getElementById("quizForm").style.display = "none";
+        document.getElementById("resultBox").style.display = "block";
+        document.getElementById("resultBox").innerText = "رد شدید! البته با اندکی ناامیدی...";
+      }
+    }
+
+    function nextQuestion(currentId, nextId) {
+      document.getElementById(currentId).classList.remove("active");
+      document.getElementById(nextId).classList.add("active");
+    }
+
+    function calculateScore() {
+      let score = 0;
+      for (let i = 2; i <= 4; i++) {
+        const q = document.querySelector(`input[name="q${i}"]:checked`);
+        if (q) score += parseInt(q.value);
+      }
+
+      document.getElementById("quizForm").style.display = "none";
+      const resultBox = document.getElementById("resultBox");
+      resultBox.style.display = "block";
+      resultBox.innerText = `نمره نهایی شما: ${score} از ۲۰ 🌟`;
+    }
+  </script>
+</body>
+</html>

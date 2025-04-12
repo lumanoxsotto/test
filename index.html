@@ -33,6 +33,9 @@
             padding: 10px;
             font-size: 14px;
             cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #restartButton {
@@ -42,6 +45,7 @@
         .button-container {
             display: flex;
             justify-content: space-between;
+            width: 100%;
         }
     </style>
 </head>
@@ -119,7 +123,8 @@
             for (let i = 1; i <= 4; i++) {
                 const q = document.querySelector(`input[name="q${i}"]:checked`);
                 if (q) {
-                    score += parseInt(q.value);
+                    // Convert the value to a number and add it to the score
+                    score += Number(q.value);
                 } else {
                     allAnswered = false; // if any question is not answered
                 }
@@ -133,11 +138,7 @@
             document.getElementById("quizForm").style.display = "none";
             const resultBox = document.getElementById("resultBox");
             resultBox.style.display = "block";
-            if (score === 20) {
-                resultBox.innerText = "آفرین دختر زرنگ و باهوش! نمره شما: " + score + " از ۲۰ 🌟";
-            } else {
-                resultBox.innerText = `نمره نهایی شما: ${score} از ۲۰ 🌟`;
-            }
+            resultBox.innerText = `نمره نهایی شما: ${score} از ۲۰ 🌟`;
             document.getElementById("restartButton").style.display = "block";
         }
 

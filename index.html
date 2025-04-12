@@ -114,9 +114,20 @@
 
         function calculateScore() {
             let score = 0;
+            let allAnswered = true; // flag to check if all questions are answered
+
             for (let i = 1; i <= 4; i++) {
                 const q = document.querySelector(`input[name="q${i}"]:checked`);
-                if (q) score += parseInt(q.value);
+                if (q) {
+                    score += parseInt(q.value);
+                } else {
+                    allAnswered = false; // if any question is not answered
+                }
+            }
+
+            if (!allAnswered) {
+                alert("لطفاً به تمام سوالات پاسخ دهید.");
+                return;
             }
 
             document.getElementById("quizForm").style.display = "none";

@@ -55,7 +55,7 @@
             <label><input type="radio" name="q1" value="no"> نه</label><br>
             <label><input type="radio" name="q1" value="irrelevant"> به شما مربوط نیست!</label><br>
             <div class="button-container">
-                <button type="button" onclick="handleQ1()">بعدی</button>
+                <button type="button" onclick="nextQuestion('q1', 'q2')">بعدی</button>
             </div>
         </div>
 
@@ -102,26 +102,6 @@
     <button id="restartButton" onclick="restartQuiz()">شروع دوباره</button>
 
     <script>
-        function handleQ1() {
-            const q1 = document.querySelector('input[name="q1"]:checked');
-            if (!q1) return alert("لطفاً یک گزینه را انتخاب کنید!");
-
-            const val = q1.value;
-            if (val === "yes") {
-                alert("هااان! 😏");
-                nextQuestion("q1", "q2");
-            } else if (val === "no") {
-                alert("🥲 خب... خوش گذشت، خدافظ.");
-                document.getElementById("quizForm").style.display = "none";
-                document.getElementById("resultBox").style.display = "block";
-                document.getElementById("resultBox").innerText = "شما در آزمون رد شدید!";
-                document.getElementById("restartButton").style.display = "block";
-            } else if (val === "irrelevant") {
-                alert("حالا به هر حال ادامه می‌دیم...");
-                nextQuestion("q1", "q2");
-            }
-        }
-
         function nextQuestion(currentId, nextId) {
             document.getElementById(currentId).classList.remove("active");
             document.getElementById(nextId).classList.add("active");

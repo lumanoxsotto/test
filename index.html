@@ -15,12 +15,8 @@
         }
 
         .question {
-            display: none;
+            margin-bottom: 15px;
         }
-
-            .question.active {
-                display: block;
-            }
 
         .result {
             display: none;
@@ -41,100 +37,74 @@
         #restartButton {
             display: none;
         }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
     </style>
 </head>
 <body>
     <h2>آزمون نهایی 📝</h2>
     <form id="quizForm">
         <!-- سوال ۱ -->
-        <div class="question active" id="q1">
+        <div class="question">
             <p>۱. آیا شما شوکا می‌باشید؟</p>
-            <label><input type="radio" name="q1" value="yes"> بله</label><br>
-            <label><input type="radio" name="q1" value="no"> نه</label><br>
-            <label><input type="radio" name="q1" value="irrelevant"> به شما مربوط نیست!</label><br>
-            <div class="button-container">
-                <button type="button" onclick="nextQuestion('q1', 'q2')">بعدی</button>
-            </div>
+            <label><input type="radio" name="q1" value="5"> بله</label><br>
+            <label><input type="radio" name="q1" value="0"> نه</label><br>
+            <label><input type="radio" name="q1" value="-5"> به شما مربوط نیست!</label><br>
         </div>
 
         <!-- سوال ۲ -->
-        <div class="question" id="q2">
+        <div class="question">
             <p>۲. اگر در جنگل با خرسی مواجه شوید، چه می‌کنید؟</p>
             <label><input type="radio" name="q2" value="5"> دوست می‌شم ببینم همون خرسه که در شورش‌های منطقی بوده؟</label><br>
             <label><input type="radio" name="q2" value="0"> فرار می‌کنم با جیغ!</label><br>
             <label><input type="radio" name="q2" value="0"> خودم رو به مردن می‌زنم!</label><br>
             <label><input type="radio" name="q2" value="-5"> به تو ربط نداره!</label><br>
-            <div class="button-container">
-                <button type="button" onclick="previousQuestion('q2', 'q1')">قبلی</button>
-                <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
-            </div>
         </div>
 
         <!-- سوال ۳ -->
-        <div class="question" id="q3">
+        <div class="question">
             <p>۳. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
             <label><input type="radio" name="q3" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
             <label><input type="radio" name="q3" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
             <label><input type="radio" name="q3" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
             <label><input type="radio" name="q3" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
-            <div class="button-container">
-                <button type="button" onclick="previousQuestion('q3', 'q2')">قبلی</button>
-                <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
-            </div>
         </div>
 
         <!-- سوال ۴ -->
-        <div class="question" id="q4">
+        <div class="question">
             <p>۴. اگه یه نفر یه فرم شوخ‌طبع برات بفرسته، چی کار می‌کنی؟</p>
             <label><input type="radio" name="q4" value="5"> با لبخند جواب می‌دم 😌</label><br>
             <label><input type="radio" name="q4" value="0"> شاید بعداً بخونم.</label><br>
             <label><input type="radio" name="q4" value="-5"> بلاک می‌کنم! 😡</label><br>
-            <div class="button-container">
-                <button type="button" onclick="previousQuestion('q4', 'q3')">قبلی</button>
-                <button type="button" onclick="calculateScore()">پایان</button>
-            </div>
         </div>
+
+        <button type="button" onclick="calculateScore()">پایان</button>
     </form>
 
     <div class="result" id="resultBox"></div>
     <button id="restartButton" onclick="restartQuiz()">شروع دوباره</button>
 
     <script>
-        function nextQuestion(currentId, nextId) {
-            document.getElementById(currentId).classList.remove("active");
-            document.getElementById(nextId).classList.add("active");
-        }
-
-        function previousQuestion(currentId, prevId) {
-            document.getElementById(currentId).classList.remove("active");
-            document.getElementById(prevId).classList.add("active");
-        }
-
         function calculateScore() {
             let score = 0;
             let allAnswered = true; // flag to check if all questions are answered
 
+            // Check all questions
             for (let i = 1; i <= 4; i++) {
                 const q = document.querySelector(`input[name="q${i}"]:checked`);
                 if (q) {
-                    // Convert the value to a number and add it to the score
                     score += Number(q.value);
                 } else {
+                    score += 0; // Assign 0 if no answer is selected
                     allAnswered = false; // if any question is not answered
                 }
             }
 
+            // If not all questions are answered, show alert
             if (!allAnswered) {
                 alert("لطفاً به تمام سوالات پاسخ دهید.");
                 return;
             }
 
+            // Hide the form and show the result
             document.getElementById("quizForm").style.display = "none";
             const resultBox = document.getElementById("resultBox");
             resultBox.style.display = "block";
@@ -147,11 +117,6 @@
             document.getElementById("quizForm").style.display = "block";
             document.getElementById("resultBox").style.display = "none";
             document.getElementById("restartButton").style.display = "none";
-
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById(`q${i}`).classList.remove("active");
-            }
-            document.getElementById("q1").classList.add("active");
         }
     </script>
 </body>

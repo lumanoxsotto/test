@@ -43,20 +43,21 @@
   <form id="quizForm">
     <!-- سوال ۱ -->
     <div class="question active" id="q1">
-      <p>۱. آیا شما آماده‌اید برای یک چالش بزرگ؟</p>
-      <label><input type="radio" name="q1" value="yes"> بله</label><br>
-      <label><input type="radio" name="q1" value="no"> نه</label><br>
-      <label><input type="radio" name="q1" value="irrelevant"> سوال مهمی نیست!</label><br>
+      <p>۱. آیا شما شوکا می‌باشید؟</p>
+      <label><input type="radio" name="q1" value="5"> بله، من شوکا هستم!</label><br>
+      <label><input type="radio" name="q1" value="0"> نه، من شوکا نیستم.</label><br>
+      <label><input type="radio" name="q1" value="-5"> اصلاً نمی‌دانم چه می‌گویید!</label><br>
       <button type="button" onclick="handleQ1()">بعدی</button>
       <div class="message" id="q1Message"></div>
     </div>
 
     <!-- سوال ۲ -->
     <div class="question" id="q2">
-      <p>۲. اگر در دل طبیعت با یک خرس مواجه شوید، چه می‌کنید؟</p>
-      <label><input type="radio" name="q2" value="5"> با آرامش از موقعیت خارج می‌شوم و سعی می‌کنم هیچ تهدیدی ایجاد نکنم.</label><br>
-      <label><input type="radio" name="q2" value="0"> فرار می‌کنم و سریع از خطر دور می‌شوم.</label><br>
-      <label><input type="radio" name="q2" value="-5"> از شجاعت خود بهره می‌برم و رو به رو می‌شوم!</label><br>
+      <p>۲. اگر در جنگل با یک خرس روبرو شوید، چه می‌کنید؟</p>
+      <label><input type="radio" name="q2" value="5"> دوست می‌شوم و می‌بینم همون خرس کلاس شورش‌های منطقیه یا نه!</label><br>
+      <label><input type="radio" name="q2" value="0"> فرار می‌کنم.</label><br>
+      <label><input type="radio" name="q2" value="0"> خودم را به مردن می‌زنم!</label><br>
+      <label><input type="radio" name="q2" value="-5"> به تو ربط نداره چقدر سوال می‌پرسی.</label><br>
       <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
       <div class="message" id="q2Message"></div>
     </div>
@@ -95,17 +96,14 @@
       }
 
       const val = q1.value;
-      if (val === "yes") {
-        document.getElementById('q1Message').innerText = "عالی! به سوال بعدی می‌رویم...";
+      if (val === "5") {
+        document.getElementById('q1Message').innerText = "شما شوکا هستید! به سوال بعدی می‌رویم...";
         nextQuestion("q1", "q2");
-      } else if (val === "no") {
-        document.getElementById('q1Message').innerText = "حتماً باز هم فرصت‌های دیگری خواهد بود!";
-        document.getElementById("quizForm").style.display = "none";
-        document.getElementById("resultBox").style.display = "block";
-        document.getElementById("resultBox").innerText = "شما در آزمون رد شدید!";
-        document.getElementById("restartButton").style.display = "block"; 
-      } else if (val === "irrelevant") {
-        document.getElementById('q1Message').innerText = "خب، همینطور ادامه می‌دهیم!";
+      } else if (val === "0") {
+        document.getElementById('q1Message').innerText = "خوب، شاید شوکا نیستید! به سوال بعدی می‌رویم.";
+        nextQuestion("q1", "q2");
+      } else if (val === "-5") {
+        document.getElementById('q1Message').innerText = "اینکه خیلی عجیب بود!";
         nextQuestion("q1", "q2");
       }
     }

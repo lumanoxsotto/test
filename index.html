@@ -2,7 +2,10 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>تست شوکایی</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, proxy-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>امتحان مهم</title>
   <style>
     body {
       font-family: sans-serif;
@@ -28,10 +31,15 @@
     #restartButton {
       display: none;
     }
+    .message {
+      font-size: 18px;
+      color: #ff0000;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
-  <h2>تست شوکایی 😄</h2>
+  <h2>امتحان مهم 😄</h2>
   <form id="quizForm">
     <!-- سوال ۱ -->
     <div class="question active" id="q1">
@@ -40,6 +48,7 @@
       <label><input type="radio" name="q1" value="no"> نه</label><br>
       <label><input type="radio" name="q1" value="irrelevant"> به شما مربوط نیست!</label><br>
       <button type="button" onclick="handleQ1()">بعدی</button>
+      <div class="message" id="q1Message"></div>
     </div>
 
     <!-- سوال ۲ -->
@@ -49,6 +58,7 @@
       <label><input type="radio" name="q2" value="0"> فرار می‌کنم با جیغ!</label><br>
       <label><input type="radio" name="q2" value="-5"> زنگ می‌زنم محیط‌زیست!</label><br>
       <button type="button" onclick="nextQuestion('q2', 'q3')">بعدی</button>
+      <div class="message" id="q2Message"></div>
     </div>
 
     <!-- سوال ۳ -->
@@ -59,6 +69,7 @@
       <label><input type="radio" name="q3" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
       <label><input type="radio" name="q3" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
       <button type="button" onclick="nextQuestion('q3', 'q4')">بعدی</button>
+      <div class="message" id="q3Message"></div>
     </div>
 
     <!-- سوال ۴ -->
@@ -68,6 +79,7 @@
       <label><input type="radio" name="q4" value="0"> شاید بعداً بخونم.</label><br>
       <label><input type="radio" name="q4" value="-5"> بلاک می‌کنم! 😡</label><br>
       <button type="button" onclick="calculateScore()">پایان</button>
+      <div class="message" id="q4Message"></div>
     </div>
   </form>
 
@@ -77,20 +89,23 @@
   <script>
     function handleQ1() {
       const q1 = document.querySelector('input[name="q1"]:checked');
-      if (!q1) return alert("لطفاً یک گزینه را انتخاب کنید!");
+      if (!q1) {
+        document.getElementById('q1Message').innerText = "لطفاً یک گزینه را انتخاب کنید!";
+        return;
+      }
 
       const val = q1.value;
       if (val === "yes") {
-        alert("هااان! 😏");
+        document.getElementById('q1Message').innerText = "هااان! 😏";
         nextQuestion("q1", "q2");
       } else if (val === "no") {
-        alert("🥲 خب... خوش گذشت، خدافظ.");
+        document.getElementById('q1Message').innerText = "🥲 خب... خوش گذشت، خدافظ.";
         document.getElementById("quizForm").style.display = "none";
         document.getElementById("resultBox").style.display = "block";
         document.getElementById("resultBox").innerText = "شما در آزمون رد شدید!";
         document.getElementById("restartButton").style.display = "block"; // نمایش دکمه شروع دوباره
       } else if (val === "irrelevant") {
-        alert("حالا به هر حال ادامه می‌دیم...");
+        document.getElementById('q1Message').innerText = "حالا به هر حال ادامه می‌دیم...";
         nextQuestion("q1", "q2");
       }
     }

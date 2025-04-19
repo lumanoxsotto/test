@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آزمون نهایی</title>
@@ -41,7 +41,11 @@
 </head>
 <body>
     <h2>آزمون نهایی 📝</h2>
-    <form id="quizForm">
+    <form id="quizForm" style="display: block;">
+
+        <!-- سوالات عمومی -->
+        <h3>سوالات عمومی</h3>
+
         <!-- سوال ۱ -->
         <div class="question">
             <p>۱. شما شوکا می‌باشید؟</p>
@@ -59,28 +63,32 @@
             <label><input type="radio" name="q2" value="-5"> فضولی؟!</label><br>
         </div>
 
+        <!-- سوالات اختصاصی -->
+        <h3>سوالات اختصاصی</h3>
+
         <!-- سوال ۳ -->
         <div class="question">
-            <p>۳. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
-            <label><input type="radio" name="q3" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
-            <label><input type="radio" name="q3" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
-            <label><input type="radio" name="q3" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
-            <label><input type="radio" name="q3" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
+            <p>۳. According to the passage, what was the main mistake made by Epimetheus in his task of distributing natural qualities?</p>
+            <label><input type="radio" name="q3" value="5"> الف) He gave too many gifts to men.</label><br>
+            <label><input type="radio" name="q3" value="0"> ب) He left men without any gifts, making them vulnerable.</label><br>
+            <label><input type="radio" name="q3" value="0"> ج) He forgot to give gifts to animals.</label><br>
+            <label><input type="radio" name="q3" value="-5"> د) He stole fire from the gods.</label><br>
         </div>
 
         <!-- سوال ۴ -->
         <div class="question">
-            <p>۴. اگه یه نفر یه فرم شوخ‌طبع برات بفرسته، چی کار می‌کنی؟</p>
-            <label><input type="radio" name="q4" value="5"> با لبخند جواب می‌دم 😌</label><br>
-            <label><input type="radio" name="q4" value="0"> شاید بعداً بخونم.</label><br>
-            <label><input type="radio" name="q4" value="-5"> بلاک می‌کنم! 😡</label><br>
+            <p>۴. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
+            <label><input type="radio" name="q4" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
+            <label><input type="radio" name="q4" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
+            <label><input type="radio" name="q4" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
+            <label><input type="radio" name="q4" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
         </div>
 
         <button type="button" onclick="calculateScore()">پایان</button>
     </form>
 
-    <div class="result" id="resultBox"></div>
-    <button id="restartButton" onclick="restartQuiz()">شروع دوباره</button>
+    <div class="result" id="resultBox" style="display: none;">نمره نهایی شما: -10 از ۲۰ 🌟</div>
+    <button id="restartButton" onclick="restartQuiz()" style="display: none;">شروع دوباره</button>
 
     <script>
         function calculateScore() {

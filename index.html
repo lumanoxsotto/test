@@ -70,4 +70,52 @@
         <div class="question">
             <p>۳. According to the passage, what was the main mistake made by Epimetheus in his task of distributing natural qualities?</p>
             <label><input type="radio" name="q3" value="5"> الف) He gave too many gifts to men.</label><br>
-            <label><input type="radio" name="q3" value="0"> ب) He left men without any gifts, making them vulnerable
+            <label><input type="radio" name="q3" value="0"> ب) He left men without any gifts, making them vulnerable.</label><br>
+            <label><input type="radio" name="q3" value="0"> ج) He forgot to give gifts to animals.</label><br>
+            <label><input type="radio" name="q3" value="-5"> د) He stole fire from the gods.</label><br>
+        </div>
+
+        <!-- سوال ۴ -->
+        <div class="question">
+            <p>۴. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
+            <label><input type="radio" name="q4" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
+            <label><input type="radio" name="q4" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
+            <label><input type="radio" name="q4" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
+            <label><input type="radio" name="q4" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
+        </div>
+
+        <button type="button" onclick="calculateScore()">پایان</button>
+    </form>
+
+    <div class="result" id="resultBox" style="display: none;">نمره نهایی شما: -10 از ۲۰ 🌟</div>
+    <button id="restartButton" onclick="restartQuiz()" style="display: none;">شروع دوباره</button>
+
+    <script>
+        function calculateScore() {
+            let score = 0;
+
+            // بررسی همه سوالات
+            for (let i = 1; i <= 4; i++) {
+                const q = document.querySelector(`input[name="q${i}"]:checked`);
+                if (q) {
+                    score += parseInt(q.value); // تغییر نوع به عدد صحیح
+                }
+            }
+
+            // مخفی کردن فرم و نمایش نتیجه
+            document.getElementById("quizForm").style.display = "none";
+            const resultBox = document.getElementById("resultBox");
+            resultBox.style.display = "block";
+            resultBox.innerText = `نمره نهایی شما: ${score} از ۲۰ 🌟`;
+            document.getElementById("restartButton").style.display = "block";
+        }
+
+        function restartQuiz() {
+            document.getElementById("quizForm").reset();
+            document.getElementById("quizForm").style.display = "block";
+            document.getElementById("resultBox").style.display = "none";
+            document.getElementById("restartButton").style.display = "none";
+        }
+    </script>
+</body>
+</html>

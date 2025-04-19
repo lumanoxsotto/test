@@ -69,26 +69,28 @@
         <!-- سوال ۳ -->
         <div class="question">
             <p>۳. According to the passage, what was the main mistake made by Epimetheus in his task of distributing natural qualities?</p>
-            <label><input type="radio" name="q3" value="5"> الف) He gave too many gifts to men.</label><br>
-            <label><input type="radio" name="q3" value="0"> ب) He left men without any gifts, making them vulnerable.</label><br>
-            <label><input type="radio" name="q3" value="0"> ج) He forgot to give gifts to animals.</label><br>
-            <label><input type="radio" name="q3" value="-5"> د) He stole fire from the gods.</label><br>
+            <label><input type="radio" name="q3" value="5"> He gave too many gifts to men.</label><br>
+            <label><input type="radio" name="q3" value="0"> He left men without any gifts, making them vulnerable.</label><br>
+            <label><input type="radio" name="q3" value="0"> He forgot to give gifts to animals.</label><br>
+            <label><input type="radio" name="q3" value="-5"> He stole fire from the gods.</label><br>
         </div>
 
         <!-- سوال ۴ -->
         <div class="question">
-            <p>۴. وقتی کسی می‌پرسه "فیلم کوتاه چیه؟"، شما چه می‌گویید؟</p>
-            <label><input type="radio" name="q4" value="5"> بستگی داره، ولی یه تعریف کلی هم داره.</label><br>
-            <label><input type="radio" name="q4" value="0"> نمی‌دونم ولی باحال به نظر میاد.</label><br>
-            <label><input type="radio" name="q4" value="0"> یه چیزی تو مایه‌های... چمیدونم دیگه!</label><br>
-            <label><input type="radio" name="q4" value="-5"> مگه بلدی فیلم بسازی؟</label><br>
+            <p>
+                ۴. اگر می‌شنیدی که پرومتئوس آتش را از خدایان ربود تا انسان بی‌پناه را یاری دهد، چه برداشتی می‌کردی؟
+            </p>
+            <label><input type="radio" name="q4" value="5"> شاید خطا کرده باشد، اما در حق انسان لطفی کرده؛ آتش همان خرد است</label><br>
+            <label><input type="radio" name="q4" value="0"> وظیفه‌اش نبود؛ /label><br>
+            <label><input type="radio" name="q4" value="0">بالاخره یکی باید ریسک می کرد</label><br>
+            <label><input type="radio" name="q4" value="-5">پرومتئوس کیه اصلاً؟/label><br>
         </div>
 
         <button type="button" onclick="calculateScore()">پایان</button>
     </form>
 
     <div class="result" id="resultBox" style="display: none;">نمره نهایی شما: -10 از ۲۰ 🌟</div>
-    <button id="restartButton" onclick="restartQuiz()" style="display: none;">شروع دوباره</button>
+    <button id="restartButton" onclick="restartQuiz()" style="display: none;">تکرار آزمون</button>
 
     <script>
         function calculateScore() {
